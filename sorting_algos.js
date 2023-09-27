@@ -73,27 +73,28 @@ function mergeSort(arr) {
         // If so, it's already sorted: return.
         if (arr.length <= 1) return arr;
         // Divide the array in half.
-        firstHalf = arr.slice(0, arr.length / 2);
-        secondHalf = arr.slice(arr[arr.length / 2]);
+        firstHalf = arr.slice(0, Math.floor(arr.length / 2));
+        secondHalf = arr.slice(Math.floor(arr.length / 2));
         // Recursively sort the left half.
         if (index < arr.length && firstHalf[index] > firstHalf[index + 1]) {
             let temp = 0;
             temp = firstHalf[index];
             firstHalf[index] = firstHalf[index + 1];
             firstHalf[index + 1] = temp;
-            mySort(...firstHalf, ...secondHalf, index++);
-            console.log(firstHalf);
+            mySort(firstHalf, secondHalf, index + 1);
         }
+        console.log(firstHalf);
         // Recursively sort the right half.
         if (index < arr.length && secondHalf[index] > secondHalf[index + 1]) {
             let temp = 0;
             temp = secondHalf[index];
             secondHalf[index] = secondHalf[index + 1];
             secondHalf[index + 1] = temp;
-            mySort(...firstHalf, ...secondHalf, index++);
+            mySort(firstHalf, secondHalf, index + 1);
         }
         // Merge the halves together and return.
         let newArr = [...firstHalf,...secondHalf];
+        console.log(newArr);
         return newArr;
     }
 
