@@ -117,3 +117,16 @@ function merge(leftArr, rightArr) {
 
 console.log(mergeSort([2, 5, 10, 1, 0, 2]));
 
+//Quick Sort Function
+
+function quickSort(arr) {
+    // Choose an element called "the pivot", how that's done is up to the implementation.
+    // Take two variables to point left and right of the list excluding pivot.
+    // Left points to the low index.
+    // Right points to the high index.
+    // While value at left is less than pivot move right.
+    // While value at right is greater than pivot move left.
+    // If both step 5 and step 6 does not match, swap left and right.
+    // If left ≥ right, the point where they met is new pivot.
+    // Repeat, recursively calling this for smaller and smaller arrays.
+}
