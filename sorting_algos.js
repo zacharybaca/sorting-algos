@@ -1,4 +1,5 @@
-# BubbleSort
+//Bubble Sort Function
+
 function bubbleSort(arr) {
 
     for (let i = 0; i < arr.length; i++) {
@@ -14,6 +15,8 @@ function bubbleSort(arr) {
     // Otherwise, repeat from the beginning
     return arr;
 }
+
+//Selection Sort Function
 
 function selectionSort(arr) {
     for (let i = 0; i < arr.length; i++) {
@@ -38,6 +41,8 @@ function selectionSort(arr) {
 
     return arr;
 }
+
+//Insertion Sort Function
 
 function insertionSort(arr) {
 
@@ -66,6 +71,8 @@ function insertionSort(arr) {
 }
 
 console.log(insertionSort([5,10,3,1,0,60]))
+
+//Merge Sort Function
 
 function mergeSort(arr) {
     // Base case: if the array has 1 or fewer elements, it's already sorted.
