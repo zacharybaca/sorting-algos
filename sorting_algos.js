@@ -67,49 +67,45 @@ function insertionSort(arr) {
 console.log(insertionSort([5,10,3,1,0,60]))
 
 function mergeSort(arr) {
-    //Sorting Function
-    function mySort(firstHalf = [], secondHalf = [], index = 0) {
-        // Check if the input is length 1 or less.
-        // If so, it's already sorted: return.
-        if (arr.length <= 1) return arr;
-        // Divide the array in half.
-        firstHalf = arr.slice(0, Math.floor(arr.length / 2));
-        secondHalf = arr.slice(Math.floor(arr.length / 2));
-        // Recursively sort the left half.
-        if (index < arr.length && firstHalf[index] > firstHalf[index + 1]) {
-            let temp = 0;
-            temp = firstHalf[index];
-            firstHalf[index] = firstHalf[index + 1];
-            firstHalf[index + 1] = temp;
-            mySort(firstHalf, secondHalf, index + 1);
-        }
-        console.log(firstHalf);
-        // Recursively sort the right half.
-        if (index < arr.length && secondHalf[index] > secondHalf[index + 1]) {
-            let temp = 0;
-            temp = secondHalf[index];
-            secondHalf[index] = secondHalf[index + 1];
-            secondHalf[index + 1] = temp;
-            mySort(firstHalf, secondHalf, index + 1);
-        }
-        // Merge the halves together and return.
-        let newArr = [...firstHalf,...secondHalf];
-        console.log(newArr);
-        return newArr;
+    // Base case: if the array has 1 or fewer elements, it's already sorted.
+    if (arr.length <= 1) {
+        return arr;
     }
 
-    console.log(mySort())
-    //Merge Function
-    // function merge() {
-    //     // Create an empty return array.
-    //     // Point to the first value of each array.
-    //     // While there are still values in each array:
-    //     // Compare the first values of each array.
-    //     // Add the smaller value to the return array.
-    //     // Move the pointer to the next value in that array.
-    //     // Return the return array.
-    // }
+    // Divide the array into two halves.
+    const middle = Math.floor(arr.length / 2);
+    const leftHalf = arr.slice(0, middle);
+    const rightHalf = arr.slice(middle);
 
+    // Recursively sort both halves.
+    const sortedLeft = mergeSort(leftHalf);
+    const sortedRight = mergeSort(rightHalf);
+
+    // Merge the sorted halves.
+    const mergedArr = merge(sortedLeft, sortedRight);
+
+    return mergedArr;
 }
 
-mergeSort([2,5,10,1,0,2])
+function merge(leftArr, rightArr) {
+    let mergedArr = [];
+    let leftIndex = 0;
+    let rightIndex = 0;
+
+    // Compare elements from both arrays and merge them in ascending order.
+    while (leftIndex < leftArr.length && rightIndex < rightArr.length) {
+        if (leftArr[leftIndex] < rightArr[rightIndex]) {
+            mergedArr.push(leftArr[leftIndex]);
+            leftIndex++;
+        } else {
+            mergedArr.push(rightArr[rightIndex]);
+            rightIndex++;
+        }
+    }
+
+    // Add any remaining elements from both arrays.
+    return mergedArr.concat(leftArr.slice(leftIndex), rightArr.slice(rightIndex));
+}
+
+console.log(mergeSort([2, 5, 10, 1, 0, 2]));
+
